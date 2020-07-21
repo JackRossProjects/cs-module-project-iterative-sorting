@@ -1,26 +1,47 @@
 # TO-DO: Complete the selection_sort() function below
 def selection_sort(arr):
-    # loop through n-1 elements
-    for i in range(0, len(arr) - 1):
-        cur_index = i
-        smallest_index = cur_index
-        # TO-DO: find next smallest element
-        # (hint, can do in 3 loc)
-        # Your code here
-
-
-        # TO-DO: swap
-        # Your code here
-
+    current_index = 0
+    # while the index is not at the end of the array, ie completely sorted,
+    while current_index < len(arr) - 1:
+        # find the smallest value in the array
+        # start at 1st value, ie current_index
+        smallest_index = current_index
+        # for each value in array past current index,
+        for i in range(current_index + 1, len(arr)):
+            if arr[smallest_index] > arr[i]:
+                smallest_index = i
+        # once we have our new smallest num per iteration,
+        # swap current with smallest in array
+        swap(smallest_index, current_index, arr)
+        # increment current index
+        current_index += 1
     return arr
 
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    # Your code here
-
-
+    # Is the list sorted?
+    isSorted = False
+    # Loop counter
+    counter = 0
+    # While the arr is not sorted,
+    while not isSorted:
+         # If arr is sorted, return the array
+        isSorted = True
+        # For each value in the array compared to the next
+        for i in range(len(arr) - 1 - counter):
+            if arr[i] > arr[i + 1]:
+                # Swap the elements
+                swap(i, i+1, arr)
+                # If we have to swap, arr not pre sorted
+                isSorted = False
+        # Increment counter after each loop
+        counter += 1
     return arr
+
+# swap helper function
+def swap(i, j, arr):
+    arr[i], arr[j] = arr[j], arr[i]
 
 '''
 STRETCH: implement the Counting Sort function below
